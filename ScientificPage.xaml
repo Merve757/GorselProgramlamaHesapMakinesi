@@ -1,0 +1,94 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp3.Views.ScientificPage"
+             BackgroundColor="#282828">
+
+    <ContentPage.Resources>
+        <Style x:Key="KeypadButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#424242" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Margin" Value="4" />
+            <Setter Property="CornerRadius" Value="8" />
+        </Style>
+        <Style x:Key="EqualsButtonStyle" TargetType="Button" BasedOn="{StaticResource KeypadButtonStyle}">
+            <Setter Property="BackgroundColor" Value="Purple" />
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout>
+        <Label x:Name="ResultLabel"
+               Text="0"
+               FontSize="48"
+               HorizontalOptions="End"
+               VerticalOptions="End"
+               TextColor="White"
+               Padding="20"
+               Margin="0, 0, 0, 20" />
+
+        <Grid RowSpacing="8" ColumnSpacing="8" Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="sinButton" Text="sin" Grid.Row="2" Grid.Column="0" Clicked="OnSinClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button x:Name="cosButton" Text="cos" Grid.Row="2" Grid.Column="1" Clicked="OnCosClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button x:Name="tanButton" Text="tan" Grid.Row="2" Grid.Column="2" Clicked="OnTanClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button x:Name="cotButton" Text="cot" Grid.Row="2" Grid.Column="3" Clicked="OnCotClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="⌫" Grid.Row="2" Grid.Column="4" Clicked="OnBackspaceClicked" Style="{StaticResource KeypadButtonStyle}" />
+
+            <Button Text="C" Grid.Row="3" Grid.Column="0" Clicked="OnClearClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="+/-" Grid.Row="3" Grid.Column="1" Clicked="OnNegateClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="%" Grid.Row="3" Grid.Column="2" Clicked="OnPercentageClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="÷" Grid.Row="3" Grid.Column="3" Clicked="OnOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="π" Grid.Row="3" Grid.Column="4" Clicked="OnScientificOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+
+            <Button Text="7" Grid.Row="4" Grid.Column="0" Clicked="OnDigitClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="8" Grid.Row="4" Grid.Column="1" Clicked="OnDigitClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="9" Grid.Row="4" Grid.Column="2" Clicked="OnDigitClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="×" Grid.Row="4" Grid.Column="3" Clicked="OnOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="e" Grid.Row="4" Grid.Column="4" Clicked="OnScientificOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+
+            <Button Text="4" Grid.Row="5" Grid.Column="0" Clicked="OnDigitClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="5" Grid.Row="5" Grid.Column="1" Clicked="OnDigitClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="6" Grid.Row="5" Grid.Column="2" Clicked="OnDigitClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="-" Grid.Row="5" Grid.Column="3" Clicked="OnOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="x^y" Grid.Row="5" Grid.Column="4" Clicked="OnScientificOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+
+            <Button Text="1" Grid.Row="6" Grid.Column="0" Clicked="OnDigitClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="2" Grid.Row="6" Grid.Column="1" Clicked="OnDigitClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="3" Grid.Row="6" Grid.Column="2" Clicked="OnDigitClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="+" Grid.Row="6" Grid.Column="3" Clicked="OnOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="exp" Grid.Row="6" Grid.Column="4" Clicked="OnScientificOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+
+            <Button Text="√x" Grid.Row="7" Grid.Column="0" Clicked="OnScientificOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="10^x" Grid.Row="7" Grid.Column="1" Clicked="OnScientificOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="n!" Grid.Row="7" Grid.Column="2" Clicked="OnScientificOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="log" Grid.Row="7" Grid.Column="3" Clicked="OnScientificOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="ln" Grid.Row="7" Grid.Column="4" Clicked="OnScientificOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+
+            <Button Text="0" Grid.Row="8" Grid.Column="0" Clicked="OnDigitClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="." Grid.Row="8" Grid.Column="1" Clicked="OnDigitClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="x^2" Grid.Row="8" Grid.Column="2" Clicked="OnScientificOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="|x|" Grid.Row="8" Grid.Column="3" Clicked="OnScientificOperatorClicked" Style="{StaticResource KeypadButtonStyle}" />
+            <Button Text="=" Grid.Row="8" Grid.Column="4" Clicked="OnEqualsClicked" Style="{StaticResource EqualsButtonStyle}" />
+
+            <Button Text="Trigonometri" Grid.Row="1" Grid.Column="0" Clicked="OnTrigonometryClicked" Style="{StaticResource KeypadButtonStyle}" Grid.ColumnSpan="5" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
